@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Verifica que se proporcione el nombre del test como argumento
+if [ -z "$1" ]; then
+  echo "Error: Debes proporcionar el nombre del test como argumento."
+  exit 1
+fi
+
+# Crea una nueva carpeta para el test
+mkdir -p "./src/test/$1"
+cd "./src/test/"
+
+# Crea una nueva aplicación Vite con React y TypeScript
+npx create-vite@latest --template react-ts --name $1
+
+cd "./$1"
+
+# Instala las dependencias
+npm install
+
+# Muestra un mensaje con las instrucciones para ejecutar la aplicación
+echo "La aplicación $1 se ha creado correctamente en la carpeta test/$1."
+echo "Puedes ejecutarla utilizando los siguientes comandos:"
+echo "cd test/$1"
+echo "npm run dev"

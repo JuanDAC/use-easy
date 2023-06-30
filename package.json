@@ -1,0 +1,29 @@
+{
+  "name": "use-easy",
+  "version": "1.0.0",
+  "description": "Use Easy useEasy library for managing global state in React applications",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "custom hooks"
+  ],
+  "author": "JuanDAC",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.14",
+    "react": "^18.2.0",
+    "rollup": "^3.25.3",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "typescript": "^5.1.3"
+  }
+}
