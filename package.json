@@ -1,6 +1,6 @@
 {
   "name": "use-easy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Use Easy useEasy library for managing global state in React applications",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

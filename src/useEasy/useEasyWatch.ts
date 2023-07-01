@@ -23,6 +23,12 @@ export const useEasyWatch = <T = {},>({ initial = {} as T, config = {}, updaters
     }, []);
 
     /**
+     * Generates the key for storing the current slide of the  global state.
+     */
+    const keys = useMemo(() => {
+        return Object.keys(initial ?? {});
+    }, []) as (keyof T)[];
+    /**
    * Generates the key for storing the global state.
    */
     const [state, setState] = useState<T>(initial);
@@ -44,6 +50,20 @@ export const useEasyWatch = <T = {},>({ initial = {} as T, config = {}, updaters
                 if (event.key !== key)
                     return;
                 const updatedState = JSON.parse(event.newValue || '{}') as T;
+                const willUpdate = keys.some((key) => {
+                    if (typeof updatedState[key] === 'object' && updatedState[key] !== null) {
+                        if (JSON.stringify(updatedState[key]) !== JSON.stringify(state[key])) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    if (updatedState[key] !== state[key]) {
+                        return true;
+                    }
+                    return false;
+                });
+                if (!willUpdate)
+                    return;
                 setState(updatedState);
             } catch (error) {
                 setError(`Error in the update changes of the global state: ${error}`);
